@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscrição cancelada</title>
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <h2>Inscrição cancelada com sucesso</h2>
+  <p>Você não receberá mais nossos e-mails.</p>
+
+  <script>
+    fetch("https://SEU_WEBHOOK_PIPEDREAM", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        event: "unsubscribe_click",
+        domain: "ecomm-lenovo.com",
+        path: "/unsubscribe",
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      })
+    });
+  </script>
+
+</body>
+</html>
