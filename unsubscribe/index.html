@@ -4,10 +4,53 @@
     <meta charset="UTF-8">
     <title>Inscrição cancelada</title>
     <meta name="robots" content="noindex">
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* Body */
+      body {
+        position: relative;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+      
+      .content {
+        position: relative;
+        z-index: 1;
+        padding: 40px 20px;
+        text-align: center;
+        color: transparent;
+      }
+    
+      #visual-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("00BBD6C1-9E1C-456B-94D7-18F70037B6BF.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        pointer-events: none;
+        z-index: 9999; /* Z-index higest */
+      }
+    </style>
   </head>
   <body>
-    <h2>Inscrição cancelada com sucesso</h2>
-    <p>Você não receberá mais nossos e-mails.</p>
+    <div class="content">
+      <h2>Inscrição cancelada com sucesso</h2>
+      <p>Você não receberá mais nossos e-mails.</p>
+    </div>
+    
+    <div id="visual-overlay"></div>
+    
     <script>
       fetch("https://SEU_WEBHOOK_PIPEDREAM", {
         method: "POST",
@@ -23,28 +66,5 @@
         })
       });
     </script>
-    <style>
-      /* Overlay de imagem */
-      #visual-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url("00BBD6C1-9E1C-456B-94D7-18F70037B6BF.jpeg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.35; 
-      pointer-events: none; /* does not block click */
-      z-index: 10;
-      }
-      /* VINTAGE CULTURE */
-      body {
-      position: relative;
-      z-index: 1;
-      }
-    </style>
-    <div id="visual-overlay"></div>
   </body>
 </html>
