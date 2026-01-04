@@ -1,3 +1,4 @@
+<!---
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -112,4 +113,28 @@
 </script>
 
 </body>
+</html> --->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+
+<script>
+  // 🔐 Gera token único
+  function generateToken() {
+    return crypto.randomUUID();
+  }
+
+  const token = generateToken();
+
+  const redirecturl =
+    "https://pages.lenovo.com/descadastrar.html?uid=" + token;
+
+  // 🚀 Redireciona automaticamente
+  window.location.replace(redirecturl);
+</script>
+
+</head>
+<body></body>
 </html>
