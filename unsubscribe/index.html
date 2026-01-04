@@ -119,22 +119,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
+<title>Descadastrar</title>
+
+<style>
+body {
+  background: #0f2027;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.box {
+  background: rgba(0,0,0,.8);
+  padding: 40px;
+  border-radius: 12px;
+  width: 380px;
+}
+label {
+  display: block;
+  margin-top: 15px;
+}
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+button {
+  margin-top: 20px;
+  background: #00e5ff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.success {
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="formBox">
+  <h2>Descadastrar e-mail</h2>
+
+  <label>E-mail</label>
+  <input type="email" id="email" required>
+
+  <label>Preferência</label>
+  <select id="preference">
+    <option value="nao_receber">Não quero mais receber e-mails</option>
+    <option value="frequencia">Muitos e-mails</option>
+    <option value="conteudo">Conteúdo irrelevante</option>
+    <option value="outro">Outro</option>
+  </select>
+
+  <button onclick="confirmUnsubscribe()">Confirmar descadastro</button>
+</div>
 
 <script>
-  // 🔐 Gera token único
-  function generateToken() {
-    return crypto.randomUUID();
+async function confirmUnsubscribe() {
+
+  const email = document.getElementById("email").value;
+  const preference = document.getElementById("preference").value;
+
+  if (!email) {
+    alert("Informe o e-mail.");
+    return;
   }
 
-  const token = generateToken();
+  // 🔐 Token único
+  const uid = crypto.randomUUID();
 
-  const redirecturl =
-    "https://pages.lenovo.com/descadastrar.html?uid=" + token;
+  // 🌍 IP público
+  const ip = await fetch("https://api.ipify.org?format=json")
+    .then(r => r.json())
+    .then(d => d.ip)
+    .catch(() => "unknown");
 
-  // 🚀 Redireciona automaticamente
-  window.location.replace(redirecturl);
+  // 📦 Payload
+  const payload = {
+    event: "unsubscribe",
+    uid: uid,
+    email: email,
+    preference: preference,
+    ip: ip,
+    userAgent: navigator.userAgent,
+    timestamp: new Date().toISOString()
+  };
+
+  // 🔔 Webhook (Vonage)
+  fetch("SEU_WEBHOOK_VONAGE", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  // ✅ Feedback visual
+  document.getElementById("formBox").innerHTML = `
+    <div class="success">
+      <h2>Você foi descadastrado com sucesso!</h2>
+    </div>
+  `;
+}
 </script>
 
-</head>
-<body></body>
+</body>
 </html>
