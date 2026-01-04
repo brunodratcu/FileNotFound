@@ -1,82 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <title>Inscrição cancelada</title>
-    <meta name="robots" content="noindex, nofollow">
-    <style>
-      /* Reset total para garantir preenchimento da tela */
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; 
-        background-color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      /* Texto oculto para o usuário, mas presente para o navegador */
-      .content {
-        position: absolute;
-        clip: rect(1px, 1px, 1px, 1px);
-        padding: 0;
-        border: 0;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-      }
-    
-      /* Camada da Imagem sobreposta */
-      #visual-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        /* A imagem deve estar na mesma pasta que este arquivo */
-        background-image: url("00BBD6C1-9E1C-456B-94D7-18F70037B6BF.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 9999;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Unsubscribe</title>
+  <meta name="robots" content="noindex">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f2027, #000);
+      color: #e0e0e0;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .panel {
+      background: rgba(20, 20, 20, 0.85);
+      padding: 50px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0,255,255,.15);
+      width: 360px;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #00e5ff;
+    }
+    p {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00e5ff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
 
-    <div class="content">
-      <h2>Inscrição cancelada com sucesso</h2>
-      <p>Você foi removido da nossa lista de contatos e não receberá mais ofertas.</p>
-    </div>
-    
-    <div id="visual-overlay"></div>
-    
-    <script>
-      // Função para pegar o e-mail do usuário na URL (ex: ?email=... )
-      const urlParams = new URLSearchParams(window.location.search);
-      const userEmail = urlParams.get('email') || 'nao_identificado';
+<div class="panel" id="content"></div>
 
-      // Disparo do Webhook para o Pipedream/Make/Zapier
-      fetch("https://SEU_WEBHOOK_PIPEDREAM", {
-        method: "POST",
-        mode: "no-cors", // Evita problemas de política CORS no navegador
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          event: "unsubscribe_confirmed",
-          user: userEmail,
-          domain: "ecomm-lenovo.com",
-          timestamp: new Date().toISOString(),
-          details: {
-            screen: window.innerWidth + "x" + window.innerHeight,
-            ua: navigator.userAgent
-          }
-        })
-      }).catch(e => console.log("Silent logging active"));
-    </script>
-  </body>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  function renderSuccess() {
+    document.getElementById("content").innerHTML = `
+      <h1>Você foi descadastrado com sucesso!</h1>
+      <p>A Lenovo está aqui caso queira voltar.</p>
+    `;
+  }
+
+  function renderForm() {
+    document.getElementById("content").innerHTML = `
+      <h1>Confirmar descadastro</h1>
+      <p>Informe seu e-mail para confirmar.</p>
+      <input type="email" id="email" placeholder="seu@email.com" required />
+      <button onclick="confirmUnsubscribe()">Confirmar</button>
+    `;
+  }
+
+  async function confirmUnsubscribe() {
+    const email = document.getElementById("email").value;
+    if (!email) return alert("Informe um e-mail válido.");
+
+    const unsubscribeId = crypto.randomUUID();
+
+    const ipData = await fetch("https://api.ipify.org?format=json")
+      .then(res => res.json());
+
+    fetch("SEU_WEBHOOK_URL", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "unsubscribe_confirmed",
+        id: unsubscribeId,
+        email: email,
+        ip: ipData.ip,
+        domain: "ecomm-lenovo.com",
+        timestamp: new Date().toISOString()
+      })
+    });
+
+    window.history.replaceState({}, "", `/unsubscribe?id=${unsubscribeId}`);
+    renderSuccess();
+  }
+
+  if (id) {
+    renderSuccess();
+  } else {
+    renderForm();
+  }
+</script>
+
+</body>
 </html>
