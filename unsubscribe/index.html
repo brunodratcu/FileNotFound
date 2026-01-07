@@ -292,6 +292,9 @@
         // Gerar token único ao carregar a página
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
         
+        console.log('🔧 DEBUG - Token gerado:', sessionToken);
+        console.log('🔧 DEBUG - Webhook URL:', WEBHOOK_URL);
+        
         function capturarDados() {
             const email = document.getElementById('email').value;
             
@@ -303,30 +306,50 @@
             
             const unsubscribed = document.getElementById('unsubscribe').checked;
             
-            return {
+            const dados = {
                 email,
                 comunicacao,
                 pausa,
                 unsubscribed,
                 timestamp: new Date().toISOString()
             };
+            
+            console.log('🔧 DEBUG - Dados capturados:', dados);
+            return dados;
         }
         
         async function enviarWebhook(dados) {
+            console.log('🔧 DEBUG - Iniciando envio para webhook...');
+            
             try {
+                console.log('🔧 DEBUG - Fazendo fetch para:', WEBHOOK_URL);
+                
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(dados)
                 });
+                
+                console.log('🔧 DEBUG - Response status:', response.status);
+                console.log('🔧 DEBUG - Response OK:', response.ok);
+                
+                if (response.ok) {
+                    const responseData = await response.text();
+                    console.log('✅ DEBUG - Resposta do servidor:', responseData);
+                }
+                
                 return response.ok;
             } catch (err) {
-                console.error('Erro ao enviar:', err);
+                console.error('❌ DEBUG - Erro ao enviar:', err);
+                console.error('❌ DEBUG - Erro detalhado:', err.message);
                 return false;
             }
         }
         
         function mostrarSucesso() {
+            console.log('✅ DEBUG - Mostrando página de sucesso');
             document.getElementById('formPage').classList.add('hidden');
             document.getElementById('successPage').classList.add('active');
             window.scrollTo(0, 0);
@@ -336,6 +359,8 @@
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            console.log('🔧 DEBUG - Formulário submetido!');
+            
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
@@ -343,18 +368,21 @@
             const dados = capturarDados();
             const enviado = await enviarWebhook(dados);
             
+            console.log('🔧 DEBUG - Enviado com sucesso?', enviado);
+            
             if (enviado) {
                 mostrarSucesso();
             } else {
-                alert('Erro ao salvar preferências. Tente novamente.');
+                console.error('❌ DEBUG - Falha no envio');
+                alert('Erro ao salvar preferências. Verifique o console (F12) para mais detalhes.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Salvar Preferências';
             }
         });
         
-        // Log do token para debug (remover em produção)
-        console.log('Token da sessão:', sessionToken);
-    })();
+        console.log('✅ DEBUG - Sistema inicializado');
+        console.log('🔧 DEBUG - Token da sessão:', sessionToken);
+    }());
     </script>
 </body>
 </html>
