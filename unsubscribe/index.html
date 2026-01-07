@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -303,10 +305,11 @@
             try {
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dados)
                 });
-                return response.ok;
+                return true;
             } catch (err) {
                 return false;
             }
@@ -326,15 +329,11 @@
             submitBtn.textContent = 'Enviando...';
             
             const dados = capturarDados();
-            const enviado = await enviarWebhook(dados);
+            await enviarWebhook(dados);
             
-            if (enviado) {
+            setTimeout(() => {
                 mostrarSucesso();
-            } else {
-                alert('Erro ao salvar preferências. Tente novamente.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Salvar Preferências';
-            }
+            }, 1000);
         });
     }());
     </script>
