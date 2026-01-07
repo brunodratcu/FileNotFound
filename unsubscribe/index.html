@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -74,7 +73,8 @@
         .checkbox-item {
             margin-bottom: 15px;
         }
-        .checkbox-item input[type="checkbox"] {
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
             margin-right: 10px;
             width: 18px;
             height: 18px;
@@ -168,7 +168,6 @@
     </style>
 </head>
 <body>
-    <!-- Formulário -->
     <div class="form-page" id="formPage">
         <div class="header">
             <div class="container">
@@ -256,7 +255,6 @@
         </div>
     </div>
 
-    <!-- Página de Sucesso -->
     <div class="success-page" id="successPage">
         <div class="container">
             <div class="success-icon">
@@ -281,14 +279,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-    // ==========================================
-    // CONFIGURAÇÃO - SUBSTITUA AS CREDENCIAIS
-    // ==========================================
-    const WEBHOOK_URL = 'https://pipedream.com/new?h=tch_M9fbJY';
+    const WEBHOOK_URL = 'https://pipedream.com/new?h=tch_GKfAjg';
 
-    // ==========================================
-    // SISTEMA DE TOKEN E ENVIO
-    // ==========================================
     (function() {
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
         
@@ -311,11 +303,10 @@
             try {
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dados)
                 });
-                return true;
+                return response.ok;
             } catch (err) {
                 return false;
             }
@@ -335,11 +326,15 @@
             submitBtn.textContent = 'Enviando...';
             
             const dados = capturarDados();
-            await enviarWebhook(dados);
+            const enviado = await enviarWebhook(dados);
             
-            setTimeout(() => {
+            if (enviado) {
                 mostrarSucesso();
-            }, 1000);
+            } else {
+                alert('Erro ao salvar preferências. Tente novamente.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Salvar Preferências';
+            }
         });
     }());
     </script>
