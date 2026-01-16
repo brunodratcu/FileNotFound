@@ -193,12 +193,10 @@
 
         <div class="content">
             <div class="container">
-                <!-- Loading -->
                 <div id="loadingInfo" class="loading" style="display:none;">
                     <i class="fas fa-spinner fa-spin"></i> Carregando suas informações...
                 </div>
 
-                <!-- Informação do Tracking -->
                 <div class="tracking-info" id="trackingInfo" style="display:none;">
                     <i class="fas fa-check-circle" style="color: #28a745;"></i>
                     <strong>Email identificado:</strong> <span id="emailFromTracking"></span>
@@ -305,39 +303,21 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-    // ============================================================================
-    // CONFIGURAÇÃO - AJUSTE AS URLs AQUI
-    // ============================================================================
-    
     const WEBHOOK_URL = 'https://eotz4wvybe4cndl.m.pipedream.net';
     const TRACKING_API = 'https://marketingbrlenovo.com.br/unsubscribe.php';
     
-    // ============================================================================
-    // SISTEMA DE RASTREAMENTO COMPLETO
-    // ============================================================================
-    
     (function() {
-        // Captura o tracking ID da URL
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
         
-        // Registra acesso à página (equivalente ao pixel)
         if (trackingId) {
             registrarAcessoPagina(trackingId);
             buscarEmailPorTracking(trackingId);
         }
         
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
-        
-        // ========================================================================
-        // FUNÇÕES DE RASTREAMENTO
-        // ========================================================================
-        
+
         async function registrarAcessoPagina(trackingId) {
-            /**
-             * Registra que o usuário acessou a página de descadastro
-             * Equivalente ao pixel de rastreamento do email
-             */
             try {
                 const dados = {
                     action: 'page_view',
@@ -348,8 +328,7 @@
                     referrer: document.referrer,
                     screen_resolution: `${screen.width}x${screen.height}`
                 };
-                
-                // Envia para a API (não bloqueia se falhar)
+
                 await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -360,16 +339,11 @@
                 
                 console.log('✅ Acesso à página registrado:', trackingId);
             } catch (err) {
-                // Falha silenciosa - não afeta a experiência do usuário
                 console.log('Rastreamento não crítico - falha ignorada');
             }
         }
         
         async function buscarEmailPorTracking(trackingId) {
-            /**
-             * Busca o email associado ao tracking_id
-             * Equivalente à função JavaScript do exemplo anterior
-             */
             document.getElementById('loadingInfo').style.display = 'block';
             
             try {
@@ -387,29 +361,23 @@
                     const data = await response.json();
                     
                     if (data.success && data.email) {
-                        // Preenche email automaticamente
                         document.getElementById('email').value = data.email;
                         document.getElementById('emailFromTracking').textContent = data.email;
                         document.getElementById('trackingInfo').style.display = 'block';
                         
-                        console.log('✅ Email encontrado e preenchido:', data.email);
                     } else {
-                        console.log('⚠️ Tracking ID não encontrado no sistema');
+                        console.log('Usuário não encontrado no sistema');
                     }
                 } else if (response.status === 404) {
-                    console.log('⚠️ Tracking ID não existe no banco de dados');
+                    console.log('Usuário não existe no banco de dados');
                 } else {
-                    console.log('⚠️ Erro ao buscar email:', response.status);
+                    console.log('Erro ao buscar email:', response.status);
                 }
             } catch (err) {
                 document.getElementById('loadingInfo').style.display = 'none';
-                console.log('⚠️ Erro de conexão ao buscar email:', err);
+                console.log('Erro de conexão ao buscar email:', err);
             }
         }
-        
-        // ========================================================================
-        // FUNÇÕES DE CAPTURA E ENVIO
-        // ========================================================================
         
         function capturarDados() {
             const email = document.getElementById('email').value;
@@ -433,9 +401,6 @@
         }
         
         async function enviarWebhook(dados) {
-            /**
-             * Envia dados para o Pipedream (webhook original)
-             */
             try {
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
@@ -443,21 +408,15 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dados)
                 });
-                console.log('✅ Dados enviados para webhook');
                 return true;
             } catch (err) {
-                console.log('❌ Erro ao enviar para webhook:', err);
                 return false;
             }
         }
         
         async function registrarDescadastro(dados) {
-            /**
-             * Registra o descadastro na API PHP
-             * Permite rastreamento completo do usuário
-             */
             if (!trackingId) {
-                console.log('⚠️ Sem tracking_id - registro limitado');
+                console.log('registro limitado');
                 return false;
             }
             
@@ -484,14 +443,14 @@
                 
                 if (response.ok) {
                     const result = await response.json();
-                    console.log('✅ Preferências registradas na API:', result);
+                    console.log('Preferências registradas na API:', result);
                     return true;
                 } else {
-                    console.log('⚠️ API retornou erro:', response.status);
+                    console.log('API retornou erro:', response.status);
                     return false;
                 }
             } catch (err) {
-                console.log('❌ Erro ao registrar na API:', err);
+                console.log('Erro ao registrar na API:', err);
                 return false;
             }
         }
@@ -502,10 +461,6 @@
             window.scrollTo(0, 0);
         }
         
-        // ========================================================================
-        // HANDLER DO FORMULÁRIO
-        // ========================================================================
-        
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -515,18 +470,13 @@
             
             const dados = capturarDados();
             
-            console.log('📤 Enviando dados:', dados);
+            console.log(dados);
             
-            // Envia para ambos os sistemas em paralelo
             const [webhookSuccess, apiSuccess] = await Promise.all([
                 enviarWebhook(dados),
                 registrarDescadastro(dados)
             ]);
-            
-            console.log('Webhook:', webhookSuccess ? '✅' : '❌');
-            console.log('API:', apiSuccess ? '✅' : '❌');
-            
-            // Mostra sucesso mesmo se um dos envios falhar
+
             setTimeout(() => {
                 mostrarSucesso();
             }, 1000);
@@ -535,11 +485,8 @@
         // ========================================================================
         // LOG INICIAL
         // ========================================================================
-        
-        console.log('🔍 Sistema de Rastreamento Iniciado');
-        console.log('Tracking ID:', trackingId || 'Não fornecido');
-        console.log('Webhook URL:', WEBHOOK_URL);
-        console.log('API URL:', TRACKING_API);
+
+        console.log(TRACKING_API);
         
     }());
     </script>
