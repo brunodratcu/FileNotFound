@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Prepara log entry
     $logEntry = [
-        'tracking_id' => $data['tracking_id'] ?? null,
+        'id' => $data['id'] ?? null,
         'email' => $data['email'],
         'preferences' => $data['preferences'] ?? [],
         'timestamp' => $data['timestamp'] ?? date('c'),
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode([
             'success' => true,
             'message' => 'Preferences saved successfully',
-            'tracking_id' => $data['tracking_id']
+            'id' => $data['id']
         ]);
         http_response_code(200);
     } else {
