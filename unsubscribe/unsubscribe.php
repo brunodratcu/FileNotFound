@@ -1,116 +1,108 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
-// Responde a requisições OPTIONS (CORS preflight)
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
+// Configuração
+$logDir = __DIR__ . '/logs';
+$trackingMapFile = $logDir . '/tracking_map.json';
+$unsubscribeLogsFile = $logDir . '/unsubscribe_logs.json';
+$webhookUrl = 'https://eotz4wvybe4cndl.m.pipedream.net'; // SUBSTITUA AQUI
+
+// Verifica modo de teste
+$testMode = isset($_GET['test_mode']) || isset($_POST['test_mode']);
+
+$action = $_GET['action'] ?? $_POST['action'] ?? '';
+
+// ============================================================
+// AÇÃO: BUSCAR EMAIL PELO TRACKING ID
+// ============================================================
+if ($action === 'get_email') {
+    $trackingId = $_GET['id'] ?? '';
+    
+    if (empty($trackingId)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'ID não fornecido']);
+        exit;
+    }
+    
+    if (!file_exists($trackingMapFile)) {
+        http_response_code(404);
+        echo json_encode(['success' => false, 'error' => 'Mapa não encontrado']);
+        exit;
+    }
+    
+    $trackingMap = json_decode(file_get_contents($trackingMapFile), true) ?: [];
+    $email = $trackingMap[$trackingId] ?? null;
+    
+    if (!$email) {
+        http_response_code(404);
+        echo json_encode(['success' => false, 'error' => 'Email não encontrado']);
+        exit;
+    }
+    
+    echo json_encode(['success' => true, 'email' => $email]);
     exit;
 }
 
-// Arquivos de dados
-$trackingMapFile = __DIR__ . '/logs/tracking_map.json';
-$unsubscribeLogFile = __DIR__ . '/logs/unsubscribe_logs.json';
-
-// ============================================================================
-// FUNÇÃO: GET EMAIL POR TRACKING ID
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'get_email') {
-    $trackingId = $_GET['id'] ?? null;
+// ============================================================
+// AÇÃO: SALVAR PREFERÊNCIAS
+// ============================================================
+if ($action === 'save_preferences') {
+    $input = json_decode(file_get_contents('php://input'), true);
     
-    if (!$trackingId) {
-        echo json_encode(['error' => 'Missing tracking ID']);
-        http_response_code(400);
-        exit;
-    }
+    $trackingId = $input['tracking_id'] ?? '';
+    $email = $input['email'] ?? '';
+    $comunicacao = $input['comunicacao'] ?? [];
+    $pausa = $input['pausa'] ?? 'Sem pausa';
+    $unsubscribed = $input['unsubscribed'] ?? false;
+    $telefoneGerente = $input['telefone_gerente'] ?? null; // NOVO CAMPO
     
-    // Carrega mapa de tracking IDs para emails
-    if (file_exists($trackingMapFile)) {
-        $trackingMap = json_decode(file_get_contents($trackingMapFile), true);
-        
-        if (isset($trackingMap[$trackingId])) {
-            echo json_encode([
-                'success' => true,
-                'email' => $trackingMap[$trackingId]['email'],
-                'sent_at' => $trackingMap[$trackingId]['sent_at']
-            ]);
-            exit;
-        }
-    }
-    
-    echo json_encode(['error' => 'Tracking ID not found']);
-    http_response_code(404);
-    exit;
-}
-
-// ============================================================================
-// FUNÇÃO: REGISTRAR DESCADASTRO
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Lê dados do POST
-    $input = file_get_contents('php://input');
-    $data = json_decode($input, true);
-    
-    if (!$data) {
-        echo json_encode(['error' => 'Invalid JSON']);
-        http_response_code(400);
-        exit;
-    }
-    
-    // Valida dados obrigatórios
-    if (empty($data['email'])) {
-        echo json_encode(['error' => 'Email is required']);
-        http_response_code(400);
-        exit;
-    }
-    
-    // Prepara log entry
     $logEntry = [
-        'id' => $data['id'] ?? null,
-        'email' => $data['email'],
-        'preferences' => $data['preferences'] ?? [],
-        'timestamp' => $data['timestamp'] ?? date('c'),
+        'event' => 'preferences',
+        'tracking_id' => $trackingId,
+        'email' => $email,
+        'comunicacao' => $comunicacao,
+        'pausa' => $pausa,
+        'unsubscribed' => $unsubscribed,
         'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-        'user_agent' => $data['user_agent'] ?? $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
-        'processed_at' => date('c')
+        'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
+        'timestamp' => date('c'),
+        'test_mode' => $testMode
     ];
     
-    // Carrega logs existentes
+    // Adiciona telefone do gerente se fornecido
+    if ($telefoneGerente) {
+        $logEntry['phone'] = $telefoneGerente;
+    }
+    
+    // Salva log local
     $logs = [];
-    if (file_exists($unsubscribeLogFile)) {
-        $content = file_get_contents($unsubscribeLogFile);
+    if (file_exists($unsubscribeLogsFile)) {
+        $content = file_get_contents($unsubscribeLogsFile);
         $logs = json_decode($content, true) ?: [];
     }
-    
-    // Adiciona novo log
     $logs[] = $logEntry;
+    file_put_contents($unsubscribeLogsFile, json_encode($logs, JSON_PRETTY_PRINT));
     
-    // Salva logs
-    $saved = file_put_contents(
-        $unsubscribeLogFile, 
-        json_encode($logs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-    );
-    
-    if ($saved !== false) {
-        echo json_encode([
-            'success' => true,
-            'message' => 'Preferences saved successfully',
-            'id' => $data['id']
+    // Envia webhook (se não for teste)
+    if (!$testMode && $webhookUrl) {
+        $ch = curl_init($webhookUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($logEntry));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'User-Agent: Lenovo-Unsubscribe/1.0'
         ]);
-        http_response_code(200);
-    } else {
-        echo json_encode(['error' => 'Failed to save data']);
-        http_response_code(500);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        
+        curl_exec($ch);
+        curl_close($ch);
     }
     
+    echo json_encode(['success' => true, 'message' => 'Preferências salvas']);
     exit;
 }
 
-// Método não suportado
-echo json_encode(['error' => 'Method not allowed']);
-http_response_code(405);
+http_response_code(400);
+echo json_encode(['success' => false, 'error' => 'Ação inválida']);
 ?>
