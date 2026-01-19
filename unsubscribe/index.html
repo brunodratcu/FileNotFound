@@ -303,31 +303,18 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-    // ============================================================================
-    // CONFIGURAÇÕES
-    // ============================================================================
     const TRACKING_API = 'https://marketingbrlenovo.com.br/unsubscribe.php';
     
     (function() {
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
-        
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
 
-        // ========================================================================
-        // INICIALIZAÇÃO
-        // ========================================================================
         if (trackingId) {
-            console.log('🆔 Tracking ID:', trackingId);
             registrarAcessoPagina(trackingId);
             buscarEmailPorTracking(trackingId);
-        } else {
-            console.warn('⚠️ Nenhum tracking ID na URL');
         }
 
-        // ========================================================================
-        // REGISTRAR ACESSO À PÁGINA (VIEW)
-        // ========================================================================
         async function registrarAcessoPagina(trackingId) {
             try {
                 const dados = {
@@ -336,33 +323,21 @@
                     page: 'unsubscribe',
                     timestamp: new Date().toISOString(),
                     user_agent: navigator.userAgent,
-                    ip: null // Será capturado no servidor
+                    ip: null
                 };
-
-                console.log('📊 Registrando acesso à página...', dados);
 
                 await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dados)
-                }).catch(() => {
-                    console.log('⚠️ Rastreamento de página falhou (não crítico)');
-                });
-                
-            } catch (err) {
-                console.log('⚠️ Erro no rastreamento de página:', err);
-            }
+                }).catch(() => {});
+            } catch (err) {}
         }
         
-        // ========================================================================
-        // BUSCAR EMAIL POR TRACKING ID
-        // ========================================================================
         async function buscarEmailPorTracking(trackingId) {
             document.getElementById('loadingInfo').style.display = 'block';
             
             try {
-                console.log('🔍 Buscando email para tracking ID:', trackingId);
-                
                 const response = await fetch(
                     `${TRACKING_API}?action=get_email&id=${trackingId}`,
                     { 
@@ -375,45 +350,27 @@
                 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('✅ Resposta da API:', data);
                     
                     if (data.success && data.email) {
                         document.getElementById('email').value = data.email;
                         document.getElementById('emailFromTracking').textContent = data.email;
                         document.getElementById('trackingInfo').style.display = 'block';
-                        console.log('✅ Email encontrado:', data.email);
-                    } else {
-                        console.log('⚠️ Email não encontrado no sistema');
                     }
-                } else if (response.status === 404) {
-                    console.log('⚠️ Tracking ID não existe no banco de dados');
-                } else {
-                    console.log('⚠️ Erro ao buscar email:', response.status);
                 }
             } catch (err) {
                 document.getElementById('loadingInfo').style.display = 'none';
-                console.error('❌ Erro de conexão ao buscar email:', err);
             }
         }
         
-        // ========================================================================
-        // CAPTURAR DADOS DO FORMULÁRIO
-        // ========================================================================
         function capturarDados() {
             const email = document.getElementById('email').value;
-            
-            // Capturar checkboxes marcados
             const comunicacao = Array.from(
                 document.querySelectorAll('input[name="comunicacao"]:checked')
             ).map(cb => cb.value);
-            
-            // Capturar pausa selecionada
             const pausa = document.querySelector('input[name="pausa"]:checked')?.value || 'Sem pausa';
-            
-            // Verificar se cancelou tudo
             const unsubscribed = document.getElementById('unsubscribe').checked;
             
-            const dados = {
+            return {
                 event: 'preferences',
                 tracking_id: trackingId || null,
                 email: email,
@@ -422,21 +379,12 @@
                 unsubscribed: unsubscribed,
                 timestamp: new Date().toISOString(),
                 user_agent: navigator.userAgent,
-                ip: null // Será capturado no servidor
+                ip: null
             };
-            
-            console.log('📦 Dados capturados do formulário:', dados);
-            
-            return dados;
         }
         
-        // ========================================================================
-        // ENVIAR PREFERÊNCIAS PARA API
-        // ========================================================================
         async function salvarPreferencias(dados) {
             try {
-                console.log('📤 Enviando preferências para API...', dados);
-                
                 const response = await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -444,33 +392,21 @@
                 });
                 
                 if (response.ok) {
-                    const result = await response.json();
-                    console.log('✅ Preferências salvas com sucesso:', result);
                     return true;
                 } else {
-                    console.error('❌ API retornou erro:', response.status);
-                    const errorText = await response.text();
-                    console.error('Detalhes:', errorText);
                     return false;
                 }
             } catch (err) {
-                console.error('❌ Erro ao salvar preferências:', err);
                 return false;
             }
         }
         
-        // ========================================================================
-        // MOSTRAR PÁGINA DE SUCESSO
-        // ========================================================================
         function mostrarSucesso() {
             document.getElementById('formPage').classList.add('hidden');
             document.getElementById('successPage').classList.add('active');
             window.scrollTo(0, 0);
         }
         
-        // ========================================================================
-        // SUBMIT DO FORMULÁRIO
-        // ========================================================================
         document.getElementById('preferencesForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -478,43 +414,19 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
             
-            // Capturar dados do formulário
             const dados = capturarDados();
-            
-            // Log para debug
-            console.log('='.repeat(80));
-            console.log('📋 RESUMO DOS DADOS:');
-            console.log('Email:', dados.email);
-            console.log('Comunicações selecionadas:', dados.comunicacao);
-            console.log('Pausa:', dados.pausa);
-            console.log('Cancelou tudo?', dados.unsubscribed);
-            console.log('='.repeat(80));
-            
-            // Salvar preferências
             const sucesso = await salvarPreferencias(dados);
             
             if (sucesso) {
-                // Aguardar 1 segundo e mostrar sucesso
                 setTimeout(() => {
                     mostrarSucesso();
                 }, 1000);
             } else {
-                // Erro ao salvar
                 alert('❌ Erro ao salvar preferências. Tente novamente.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Salvar Preferências';
             }
         });
-        
-        // ========================================================================
-        // LOG INICIAL
-        // ========================================================================
-        console.log('='.repeat(80));
-        console.log('🚀 Sistema de Preferências Lenovo Iniciado');
-        console.log('📍 API:', TRACKING_API);
-        console.log('🆔 Tracking ID:', trackingId || 'Não fornecido');
-        console.log('='.repeat(80));
-        
     }());
     </script>
 </body>
