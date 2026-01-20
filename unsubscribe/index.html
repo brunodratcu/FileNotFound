@@ -305,27 +305,37 @@
     <script>
     const TRACKING_API = 'https://marketingbrlenovo.com.br/unsubscribe.php';
     
+    function getTimestampBrasilia() {
+        const agora = new Date();
+        const brasiliaOffset = -3 * 60;
+        const localOffset = agora.getTimezoneOffset();
+        const diff = brasiliaOffset - localOffset;
+        const brasilia = new Date(agora.getTime() + diff * 60000);
+        
+        return brasilia.toISOString().replace('Z', '-03:00');
+    }
+    
     (function() {
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
-
+    
         if (trackingId) {
             registrarAcessoPagina(trackingId);
             buscarEmailPorTracking(trackingId);
         }
-
+    
         async function registrarAcessoPagina(trackingId) {
             try {
                 const dados = {
                     event: 'page_view',
                     tracking_id: trackingId,
                     page: 'unsubscribe',
-                    timestamp: new Date().toISOString(),
+                    timestamp: getTimestampBrasilia(),  // ← ALTERADO
                     user_agent: navigator.userAgent,
                     ip: null
                 };
-
+            
                 await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -377,7 +387,7 @@
                 comunicacao: comunicacao,
                 pausa: pausa,
                 unsubscribed: unsubscribed,
-                timestamp: new Date().toISOString(),
+                timestamp: getTimestampBrasilia(),  // ← ALTERADO
                 user_agent: navigator.userAgent,
                 ip: null
             };
@@ -422,7 +432,7 @@
                     mostrarSucesso();
                 }, 1000);
             } else {
-                alert('Erro ao salvar preferências. Tente novamente.');
+                alert('❌ Erro ao salvar preferências. Tente novamente.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Salvar Preferências';
             }
