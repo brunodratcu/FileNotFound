@@ -304,7 +304,7 @@
 
     <script>
     const TRACKING_API = 'https://marketingbrlenovo.com.br/unsubscribe.php';
-    
+
     function getTimestampBrasilia() {
         const agora = new Date();
         const brasiliaOffset = -3 * 60;
@@ -314,28 +314,28 @@
         
         return brasilia.toISOString().replace('Z', '-03:00');
     }
-    
+
     (function() {
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
         const sessionToken = 'LEN' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5).toUpperCase();
-    
+
         if (trackingId) {
             registrarAcessoPagina(trackingId);
             buscarEmailPorTracking(trackingId);
         }
-    
+
         async function registrarAcessoPagina(trackingId) {
             try {
                 const dados = {
                     event: 'page_view',
                     tracking_id: trackingId,
                     page: 'unsubscribe',
-                    timestamp: getTimestampBrasilia(),  // ← ALTERADO
+                    timestamp: getTimestampBrasilia(),
                     user_agent: navigator.userAgent,
                     ip: null
                 };
-            
+
                 await fetch(TRACKING_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -387,7 +387,7 @@
                 comunicacao: comunicacao,
                 pausa: pausa,
                 unsubscribed: unsubscribed,
-                timestamp: getTimestampBrasilia(),  // ← ALTERADO
+                timestamp: getTimestampBrasilia(),
                 user_agent: navigator.userAgent,
                 ip: null
             };
@@ -397,16 +397,41 @@
             try {
                 const response = await fetch(TRACKING_API, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify(dados)
                 });
                 
-                if (response.ok) {
+                const contentType = response.headers.get('content-type');
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Erro HTTP:', response.status, errorText);
+                    return false;
+                }
+                
+                if (!contentType || !contentType.includes('application/json')) {
+                    const htmlResponse = await response.text();
+                    console.error('Resposta não é JSON:', htmlResponse.substring(0, 200));
+                    
+                    if (htmlResponse.includes('success') || htmlResponse.includes('Preferências salvas')) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
                     return true;
                 } else {
+                    console.error('API retornou erro:', result);
                     return false;
                 }
             } catch (err) {
+                console.error('Erro na requisição:', err);
                 return false;
             }
         }
@@ -421,20 +446,24 @@
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
+            const submitOriginalText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
             
             const dados = capturarDados();
+            
+            console.log('Enviando dados:', dados);
+            
             const sucesso = await salvarPreferencias(dados);
             
             if (sucesso) {
                 setTimeout(() => {
                     mostrarSucesso();
-                }, 1000);
+                }, 500);
             } else {
-                alert('❌ Erro ao salvar preferências. Tente novamente.');
+                alert('Erro ao salvar preferências. Verifique sua conexão e tente novamente.');
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Salvar Preferências';
+                submitBtn.textContent = submitOriginalText;
             }
         });
     }());
